@@ -8,7 +8,6 @@
 
 - File upload with automatic expiration
 - File listing and sharing
-- Image thumbnail generation
 - File preview
 - Storage usage information
 - Responsive web interface
