@@ -2,6 +2,8 @@
 
 "File Sharing" (I can't think of an interesting name so it's going to be that for the time being) is a simple and efficient file sharing platform built with Flask. It allows users to upload, share, and manage files with automatic expiration and thumbnail generation for images.
 
+![Showcase image of the web interface](https://github.com/user-attachments/assets/e53993b5-7742-4f4a-bece-8177a0466728)
+
 ## Features
 
 - File upload with automatic expiration
