@@ -135,7 +135,7 @@ def get_storage_info():
     return jsonify({'used': total_size})
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="File Sharing Application")
+    parser = argparse.ArgumentParser(description="A yet another file sharing platform")
     parser.add_argument('--port', type=int, default=5000, help='Port to run the server on')
     parser.add_argument('--host', type=str, default='0.0.0.0', help='Host to run the server on')
     args = parser.parse_args()
