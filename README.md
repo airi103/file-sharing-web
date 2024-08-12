@@ -45,3 +45,11 @@ To start the server, run the following command:
 ```py
 python app.py --host 0.0.0.0 --port 5000
 ```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License.
