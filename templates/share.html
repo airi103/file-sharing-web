@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="theme2">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- HTML Meta Tags -->
     <title>I wasted {{ (file_metadata['size'] / 1024 / 1024) | round(2) }} MB to show you this</title>
+    <link rel="stylesheet" href="../static/main.css">
     
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="I wasted {{ (file_metadata['size'] / 1024 / 1024) | round(2) }} MB to show you this">
@@ -24,253 +25,63 @@
     {% endif %}
 
     <style>
-        :root {
-            --bg-overlay: rgba(255, 255, 255, 0.5);
-            --window-bg: rgba(255, 255, 255, 0.85);
-            --text-color: #000000;
-            --text-secondary: #4d4d4d;
-            --title-bar-bg: rgba(236, 236, 236, 0.7);
-            --title-bar-border: #e1e1e1;
-            --title-bar-text: #4d4d4d;
-            --button-bg: #007aff;
-            --button-text: #ffffff;
-            --button-hover: #0056b3;
-            --button-active: #004094;
-            --segmented-bg: #f0f0f0;
-            --segmented-selected: #ffffff;
-            --segmented-text: #000000;
-        }
+*/
 
-        .dark-mode {
-            --bg-overlay: rgba(0, 0, 0, 0.5);
-            --window-bg: rgba(40, 40, 40, 0.85);
-            --text-color: #ffffff;
-            --text-secondary: #a1a1a1;
-            --title-bar-bg: rgba(58, 58, 58, 0.7);
-            --title-bar-border: #2a2a2a;
-            --title-bar-text: #ffffff;
-            --button-bg: #0a84ff;
-            --button-text: #ffffff;
-            --button-hover: #409cff;
-            --button-active: #0060df;
-            --segmented-bg: #1c1c1e;
-            --segmented-selected: #2c2c2e;
-            --segmented-text: #ffffff;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'SF Pro Text', sans-serif;
-            background-color: var(--bg-overlay);
-            overflow-x: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            transition: background-color 0.3s ease;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('{{ image_url }}');
-            background-size: cover;
-            background-position: center;
-            filter: blur(10px);
-            z-index: -1;
-            opacity: 0.7;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 600px;
-            background: var(--window-bg);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
-            overflow: hidden;
-            transition: background 0.3s ease;
-        }
-
-        .title-bar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-            background: var(--title-bar-bg);
-            position: relative;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid var(--title-bar-border);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .title-bar .title {
-            font-weight: 500;
-            font-size: 13px;
-            color: var(--title-bar-text);
-            transition: color 0.3s ease;
-        }
-
-        .title-bar .buttons {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            gap: 8px;
-        }
-
-        .title-bar .button {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .title-bar .button.close { background-color: #ff5f57; }
-        .title-bar .button.minimize { background-color: #febc2e; }
-        .title-bar .button.fullscreen { background-color: #28c940; }
-
-        .content {
-            padding: 30px;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            margin: 0 0 15px;
-            color: var(--text-color);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .file-info {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 25px;
-            transition: color 0.3s ease;
-        }
-
-        img {
-            width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 6px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        img:hover {
-            transform: scale(1.05);
-        }
-
-        .bottom-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background-color: var(--title-bar-bg);
-            transition: all 0.3s ease;
-            border-top: 1px solid var(--title-bar-border);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .download-button {
-            padding: 8px 16px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--button-text);
-            background-color: var(--button-bg);
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-        }
-
-        .download-button:hover {
-            background-color: var(--button-hover);
-        }
-
-        .download-button:active {
-            background-color: var(--button-active);
-            transform: translateY(1px);
-        }
-
-        .segmented-control {
-            display: inline-flex;
-            background-color: var(--segmented-bg);
-            border-radius: 6px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .segmented-control label {
-            padding: 6px 12px;
-            font-size: 12px;
-            color: var(--segmented-text);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .segmented-control input[type="radio"] {
-            display: none;
-        }
-
-        .segmented-control input[type="radio"]:checked + label {
-            background-color: var(--segmented-selected);
-            font-weight: 500;
-        }
-
+    .body-style-2::before{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('{{ image_url }}');
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    z-index: -1;
+    opacity: 0.7;
+}
         @media (max-width: 768px) {
-            .container {
+            .container-2 {
                 width: 95%;
             }
 
-            .content {
+            .content-2 {
                 padding: 20px;
             }
 
-            h1 { font-size: 1.5rem; }
-            .file-info { font-size: 0.9rem; }
-            .bottom-bar {
+            .h1-2 { font-size: 1.5rem;   white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;}
+            .file-info-2 { font-size: 0.9rem; }
+            .bottom-bar-2 {
                 padding: 10px 20px;
             }
-            .download-button {
+            .download-button-2 {
                 padding: 6px 12px;
                 font-size: 12px;
             }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="title-bar">
-            <div class="buttons">
+<body class="body-style-2">
+    <div class="container-2">
+        <div class="title-bar-2">
+            <div class="buttons-2">
                 <div class="button close"></div>
                 <div class="button minimize"></div>
                 <div class="button fullscreen"></div>
             </div>
-            <div class="title">File Viewer</div>
+            <div class="title-2">File Viewer</div>
         </div>
-        <div class="content">
-            <h1>{{ file_metadata['filename'] }}</h1>
+        <div class="content-2">
+            <h1 class="h1-2">{{ file_metadata['filename'] }}</h1>
             <p class="file-info">Type: {{ file_metadata['type'] }} | Size: {{ (file_metadata['size'] / 1024 / 1024) | round(2) }} MB</p>
             {% if image_url %}
             <img id="file-image" src="{{ image_url }}" alt="File Image">
             {% endif %}
         </div>
-        <div class="bottom-bar">
-            <a href="{{ file_url }}" class="download-button" download>Download File</a>
-            <div class="segmented-control">
+        <div class="bottom-bar-2">
+            <a href="{{ file_url }}" class="download-button-2" download>Download File</a>
+            <div class="segmented-control-2">
                 <input type="radio" name="appearance" id="lightMode">
                 <label for="lightMode">Light</label>
                 <input type="radio" name="appearance" id="darkMode">
@@ -286,10 +97,10 @@
 
         function setMode(isDark) {
             if (isDark) {
-                body.classList.add('dark-mode');
+                body.classList.add('dark-mode-2');
                 darkModeRadio.checked = true;
             } else {
-                body.classList.remove('dark-mode');
+                body.classList.remove('dark-mode-2');
                 lightModeRadio.checked = true;
             }
         }
