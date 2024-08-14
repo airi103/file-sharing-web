@@ -29,6 +29,8 @@ file-sharing-web/
 ├── README.md
 ├── uploads/
 ├── thumbnails/
+├── static/
+│   └── main.css
 └── templates/
     ├── index.html
     └── share.html
