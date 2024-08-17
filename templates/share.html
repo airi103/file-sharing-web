@@ -26,6 +26,7 @@
 
     <style>
 
+
     .body-style-2::before{
     content: "";
     position: fixed;
@@ -41,10 +42,25 @@
     opacity: 0.7;
 }
         @media (max-width: 768px) {
-            .container-2 {
-                width: 95%;
-            }
 
+            .container-2 {
+    width: 95%;
+
+    position: relative;
+    overflow: hidden;
+}
+   
+
+#file-image {
+  
+  width: 85%;
+  height: 45%;
+  object-fit: cover;
+  position: absolute;
+ 
+}
+
+       
             .content-2 {
                 padding: 20px;
             }
@@ -53,6 +69,7 @@
             .file-info-2 { font-size: 0.9rem; }
             .bottom-bar-2 {
                 padding: 10px 20px;
+                margin-top: 150px;
             }
             .download-button-2 {
                 padding: 6px 12px;
@@ -75,7 +92,11 @@
             <h1 class="h1-2">{{ file_metadata['filename'] }}</h1>
             <p class="file-info">Type: {{ file_metadata['type'] }} | Size: {{ (file_metadata['size'] / 1024 / 1024) | round(2) }} MB</p>
             {% if image_url %}
+            <div class="parent-container">
+            <div class="image-container">
             <img id="file-image" src="{{ image_url }}" alt="File Image">
+        </div>
+    </div>
             {% endif %}
         </div>
         <div class="bottom-bar-2">
